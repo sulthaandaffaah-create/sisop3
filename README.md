@@ -175,7 +175,9 @@ _Explain the steps performed and include relevant code snippets from the steps y
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
 _Insert screenshots of program execution results or other relevant processes._
 
-- 
+- <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f0b50813-e391-435a-99b9-1cc9703b0ffd" />
+- <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/9f9eed72-e878-4999-8cd0-8a2c722031a1" />
+
 
 ### Kode Penuh _(Full Code)_
 Masukkan kode lengkap yang digunakan untuk menyelesaikan bagian ini.  
@@ -217,7 +219,8 @@ _Explain the steps performed and include relevant code snippets from the steps y
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
 _Insert screenshots of program execution results or other relevant processes._
 
-- 
+- <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/868e7aae-e5fe-48b3-96c7-358b057859e4" />
+
 
 ### Kode Penuh _(Full Code)_
 Masukkan kode lengkap yang digunakan untuk menyelesaikan bagian ini.  
