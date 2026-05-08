@@ -182,7 +182,10 @@ _Explain the steps performed and include relevant code snippets from the steps y
   cd linux-6.1.1
   ```
 - Lakukan konfigurasi dengan `make tinyconfig` dan `make menuconfig`
-- 
+- Atau bisa dengan `scripts/config --enable CONFIG_YANG_DIPERLUKAN`
+- Gunakan `make -j$(nproc)` untuk membuat file bzImage
+- Salin ke osboot dengan `cp arch/x86/boot/bzImage ..`
+
 ### Screenshot _(Screenshot)_
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
 _Insert screenshots of program execution results or other relevant processes._
@@ -197,7 +200,7 @@ _Insert screenshots of program execution results or other relevant processes._
 Masukkan kode lengkap yang digunakan untuk menyelesaikan bagian ini.  
 _Insert the full source code used to solve this section._
 
-- 
+- Tidak ada kode, hanya command di terminal
 
 ## B. Langkah-langkah & Potongan Kode, Screenshot, Kode Penuh
 _(Steps & Code Snippets, Screenshot, Full Code)_
@@ -206,7 +209,24 @@ _(Steps & Code Snippets, Screenshot, Full Code)_
 Jelaskan langkah-langkah yang dilakukan dan berikan potongan kode dari langkah-langkah yang kalian jelaskan jika ada.  
 _Explain the steps performed and include relevant code snippets from the steps you describe if applicable._
 
-- 
+- Install busybox jika tidak ada (cek dengan `whereis busybox`). Install dengan `sudo apt install -y busybox-static`
+- Mauk ke superuser mode dengan `sudo bash`
+- Buat direktori untuk initramfs dengan `mkdir -p myramdisk/{bin,dev,proc,sys,etc,root,home/user1}`
+- Salin file devices ke dev dengan
+  ```
+  cp -a /dev/null myramdisk/dev
+  cp -a /dev/tty* myramdisk/dev
+  cp -a /dev/zero myramdisk/dev
+  cp -a /dev/console myramdisk/dev
+  ```
+- Salin Busybox ke bin dengan
+  ```
+  cp /usr/bin/busybox myramdisk/bin
+  cd myramdisk/bin
+  ./busybox --install .
+  ```
+- Buat file NOTICE di log dengan `echo "isi terserah" > myramdisk/log/NOTICE`
+
 
 ### Screenshot _(Screenshot)_
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
@@ -218,7 +238,8 @@ _Insert screenshots of program execution results or other relevant processes._
 Masukkan kode lengkap yang digunakan untuk menyelesaikan bagian ini.  
 _Insert the full source code used to solve this section._
 
-- 
+- Tidak ada kode, hanya command di terminal
+
 
 ## C. Langkah-langkah & Potongan Kode, Screenshot, Kode Penuh
 _(Steps & Code Snippets, Screenshot, Full Code)_
