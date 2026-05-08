@@ -211,7 +211,8 @@ _Explain the steps performed and include relevant code snippets from the steps y
 
 - Install busybox jika tidak ada (cek dengan `whereis busybox`). Install dengan `sudo apt install -y busybox-static`
 - Mauk ke superuser mode dengan `sudo bash`
-- Buat direktori untuk initramfs dengan `mkdir -p myramdisk/{bin,dev,proc,sys,etc,root,home/user1}`
+- Buat direktori untuk initramfs dan roots dengan
+  `mkdir -p myramdisk/{bin,dev,etc,proc,sys,tmp,vault,watch,log,home/guardian,homeobserver,root,home/user1}`
 - Salin file devices ke dev dengan
   ```
   cp -a /dev/null myramdisk/dev
@@ -248,7 +249,16 @@ _(Steps & Code Snippets, Screenshot, Full Code)_
 Jelaskan langkah-langkah yang dilakukan dan berikan potongan kode dari langkah-langkah yang kalian jelaskan jika ada.  
 _Explain the steps performed and include relevant code snippets from the steps you describe if applicable._
 
-- 
+- Buat password dengan `openssl passwd -1 <Password>`. Lakukan untuk setiap password
+- Simpan output setiap password
+- Buat file passwd di etc dengan nano, isi dengan
+  ```
+  root:<<hasilgeneratorrootpassword>>:0:0:root:/root:/bin/sh
+  guardian:<<hasilgeneratorrootpassword>>:1001:100:guardian:/home/guardian:/bin/sh
+  observer:<<hasilgeneratorrootpassword>>:1002:101:observer:/home/observer:/bin/sh
+```
+- Buat file group di etc dengan nano
+- Gunakan chmod dan chown untuk atur permission sesuai soal
 
 ### Screenshot _(Screenshot)_
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
@@ -264,7 +274,37 @@ _Insert screenshots of program execution results or other relevant processes._
 Masukkan kode lengkap yang digunakan untuk menyelesaikan bagian ini.  
 _Insert the full source code used to solve this section._
 
-- 
+- passwd
+```
+  root:<<hasilgeneratorrootpassword>>:0:0:root:/root:/bin/sh
+  guardian:<<hasilgeneratorrootpassword>>:1001:100:guardian:/home/guardian:/bin/sh
+  observer:<<hasilgeneratorrootpassword>>:1002:101:observer:/home/observer:/bin/sh
+```
+- group
+```
+root:x:0:
+bin:x:1:root
+sys:x:2:root
+tty:x:5:root,guardian,observer
+disk:x:6:root
+wheel:x:10:root,guardian,observer
+guardian:x:100:guardian
+observer:x:101:observer
+```
+
+- Ubah permission di terminal
+```
+sudo chown -R 0:0 myramdisk/vault
+sudo chmod 700 myramdisk/vault
+
+sudo chown -R 1000:100 myramdisk/watch
+sudo chmod 700 myramdisk/watch
+
+sudo chown -R 1000:100 myramdisk/home/guardian
+sudo chmod 700 myramdisk/home/guardian
+
+sudo chown -R 1002:101 myramdisk/home/observer
+sudo chmod 700 myramdisk/home/observer
 
 ## D. Langkah-langkah & Potongan Kode, Screenshot, Kode Penuh
 _(Steps & Code Snippets, Screenshot, Full Code)_
