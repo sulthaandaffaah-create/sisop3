@@ -170,10 +170,19 @@ Jelaskan langkah-langkah yang dilakukan dan berikan potongan kode dari langkah-l
 _Explain the steps performed and include relevant code snippets from the steps you describe if applicable._
 
 - Instal software pendukung dengan
-  `sudo apt -y update
-  sudo apt -y install qemu-system build-essential bison flex libelf-dev libssl-dev bc grub-common grub-pc libncurses-dev libssl-dev mtools grub-pc-bin xorriso tmux`
+  ```
+  sudo apt -y update
+  sudo apt -y install qemu-system build-essential bison flex libelf-dev libssl-dev bc grub-common grub-pc libncurses-dev libssl-dev mtools grub-pc-bin xorriso tmux
+  ```
+- Masuk direktori osboot yang disediakan soal
+- Download dan ekstrak kernel linux dengan
+  ```
+  wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.1.tar.xz
+  tar -xvf linux-6.1.1.tar.xz
+  cd linux-6.1.1
+  ```
+- Lakukan konfigurasi dengan `make tinyconfig` dan `make menuconfig`
 - 
-
 ### Screenshot _(Screenshot)_
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
 _Insert screenshots of program execution results or other relevant processes._
