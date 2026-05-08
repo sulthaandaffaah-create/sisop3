@@ -256,7 +256,8 @@ _Explain the steps performed and include relevant code snippets from the steps y
   root:<<hasilgeneratorrootpassword>>:0:0:root:/root:/bin/sh
   guardian:<<hasilgeneratorrootpassword>>:1001:100:guardian:/home/guardian:/bin/sh
   observer:<<hasilgeneratorrootpassword>>:1002:101:observer:/home/observer:/bin/sh
-```
+  ```
+  
 - Buat file group di etc dengan nano
 - Gunakan chmod dan chown untuk atur permission sesuai soal
 
@@ -319,7 +320,9 @@ _Explain the steps performed and include relevant code snippets from the steps y
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
 _Insert screenshots of program execution results or other relevant processes._
 
-- 
+- Membuka Qemu (Booting)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/265402b0-b2f6-420c-adbd-86eb9bafbdb2" />
+
 
 ### Kode Penuh _(Full Code)_
 Masukkan kode lengkap yang digunakan untuk menyelesaikan bagian ini.  
