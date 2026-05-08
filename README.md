@@ -169,6 +169,9 @@ _(Steps & Code Snippets, Screenshot, Full Code)_
 Jelaskan langkah-langkah yang dilakukan dan berikan potongan kode dari langkah-langkah yang kalian jelaskan jika ada.  
 _Explain the steps performed and include relevant code snippets from the steps you describe if applicable._
 
+- Instal software pendukung dengan
+  `sudo apt -y update
+  sudo apt -y install qemu-system build-essential bison flex libelf-dev libssl-dev bc grub-common grub-pc libncurses-dev libssl-dev mtools grub-pc-bin xorriso tmux`
 - 
 
 ### Screenshot _(Screenshot)_
