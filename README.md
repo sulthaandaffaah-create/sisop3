@@ -306,6 +306,7 @@ sudo chmod 700 myramdisk/home/guardian
 
 sudo chown -R 1002:101 myramdisk/home/observer
 sudo chmod 700 myramdisk/home/observer
+```
 
 ## D. Langkah-langkah & Potongan Kode, Screenshot, Kode Penuh
 _(Steps & Code Snippets, Screenshot, Full Code)_
@@ -314,7 +315,31 @@ _(Steps & Code Snippets, Screenshot, Full Code)_
 Jelaskan langkah-langkah yang dilakukan dan berikan potongan kode dari langkah-langkah yang kalian jelaskan jika ada.  
 _Explain the steps performed and include relevant code snippets from the steps you describe if applicable._
 
-- 
+- Pindah ke myramdisk, buat file init dengan nano
+- Pada file init, atur mount dengan `/bin/mount -t proc none /proc`, atur untuk proc, sys, tmp(untuk virtual ram), dan dev
+- isi custome prompt dengan `export PS1='\[\e[32m\]\u@\h:\w \$ \[\e[34m\]SentinelOS\[\e[0m\] '`. `[\e[...\]` untuk mengatur warna, 32m untuk hijau, 34m untuk biru, 0m untuk   mengembalikan ke dasar.
+- Panggil login prompt dengan
+  ```
+   while true
+  do
+    /bin/getty -L tty1 115200 vt100
+    sleep 1
+  done
+  ```
+- Simpan file, kemudian beri izin dengan `chmod +x init`
+- Buat initramfs dengan `find . | cpio -oHnewc | gzip > ../myramdisk.gz`
+- pindah ke direktori osboot dan jalankan qemu dengan
+  ```
+  qemu-system-x86_64 \
+  -smp 2 \
+  -m 256 \
+  -display curses \
+  -vga std \
+  -kernel bzImage \
+  -initrd myramdisk.gz
+  ```
+- Ketika prompt login muncul, masukkan user dan password yang sesuai. tes beberapa perintah seperti ls dan whoami
+- Matikan dengan `pkill -f qemu`
 
 ### Screenshot _(Screenshot)_
 Masukkan screenshot hasil eksekusi program atau proses yang relevan.  
@@ -328,8 +353,27 @@ _Insert screenshots of program execution results or other relevant processes._
 Masukkan kode lengkap yang digunakan untuk menyelesaikan bagian ini.  
 _Insert the full source code used to solve this section._
 
-- 
+- init
+```
+#!/bin/sh
 
+/bin/mount -t proc none /proc
+/bin/mount -t sysfs none /sys
+/bin/mount -t tmpfs none /tmp
+/bin/mount -t devtmpfs none /dev
+
+/bin/hostname SentinelOS
+
+echo "Booting SentinelOS..."
+
+export PS1='\[\e[32m\]\u@\h:\w \$ \[\e[34m\]SentinelOS\[\e[0m\] '
+
+while true
+do
+    /bin/getty -L tty1 115200 vt100
+    sleep 1
+done
+```
 ## E. Langkah-langkah & Potongan Kode, Screenshot, Kode Penuh
 _(Steps & Code Snippets, Screenshot, Full Code)_
 
